@@ -1,31 +1,57 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enviar Imagen y Obtener Ubicación</title>
+    <title>Mi Página Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .product-card {
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
 </head>
-<body>
-    <h2>Enviar Imagen al Teléfono</h2>
-    
-    <!-- Imagen del Producto -->
-    <h3>Imagen del Producto:</h3>
-    <img id="productImage" src="product.jpg" alt="Producto" width="300">
+<body onload="getLocation()>
 
-    <!-- Botón para enviar imagen -->
-    <p>
-        <a id="sendImage" href="#" target="_blank">📩 Enviar imagen al teléfono</a>
-    </p>
+    <div class="container text-center mt-5" >
+        <div class="card product-card">
+            <img src="product.jpg" class="card-img-top" alt="Producto">
+            <div class="card-body">
+                <h5 class="card-title">Producto de Ejemplo</h5>
+                <p class="card-text">¿Está disponible este producto? ¿Cuál es su precio?</p>
+            </div>
+        </div>
+    </div>
 
-    <!-- Botón para obtener ubicación -->
-    <button id="getLocation">📍 Obtener Ubicación</button>
+    <p id="demo"></p>
+    <script>
+        const x = document.getElementById("demo");
+        
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error);
+          } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+        
+        function success(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude +
+          "<br>Longitude: " + position.coords.longitude;
+        }
+        
+        function error() {
+          alert("Sorry, no position available.");
+        }
+        </script>
 
-    <!-- Espacio para mostrar la ubicación -->
-    <h2>Ubicación del Teléfono:</h2>
-    <p id="location">Esperando ubicación...</p>
-    <a id="mapsLink" href="#" target="_blank" style="display: none;">📍 Ver en Google Maps</a>
-
-    <!-- Script externo -->
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
